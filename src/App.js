@@ -11,7 +11,7 @@ export default function App() {
   const [step, setStep] = useState(1); //useState is an arr
   const [isOpen, setOpen] = useState(true);
 
-  function handlePreviouse() {
+  function handlePrevious() {
     //when set state with a current state, pass in a callback function, more maintainable
     if (step > 1) setStep((s) => s - 1);
   }
@@ -39,27 +39,25 @@ export default function App() {
           </p>
 
           <div className="buttons">
-            <button
-              style={{ backgroundColor: "#7950f2", color: "#fff" }}
-              onClick={handlePreviouse}
-              //DO NOT ADD ()
-              //DO NOT CALL A FUNCTION HERE BUT SPECIFY A FUNCTION VALUE as js will immediately run the call once it sees it
-              //so rememeber after onClick, add ()=> before the function
-              //what we want is a callback function which will be called at a later time
-              // onClick={() => alert("Previous")}
-            >
-              Previous
-            </button>
-
-            <button
-              style={{ backgroundColor: "#7950f2", color: "#fff" }}
-              onClick={handleNext}
-            >
-              Next
-            </button>
+            <Button bgColor="#7950f2" textColor="#fff" onClick={handlePrevious}>
+              <spa>👈🏻</spa> Previous
+            </Button>
+            <Button bgColor="#7950f2" textColor="#fff" onClick={handleNext}>
+              Next <span>👉🏻</span>
+            </Button>
           </div>
         </div>
       )}
     </>
+  );
+}
+function Button({ bgColor, textColor, onClick, children }) {
+  return (
+    <button
+      style={{ backgroundColor: bgColor, color: textColor }}
+      onClick={onClick}
+    >
+      {children}
+    </button>
   );
 }
